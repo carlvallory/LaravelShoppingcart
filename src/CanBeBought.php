@@ -40,4 +40,16 @@ trait CanBeBought
 
         return null;
     }
+
+    /**
+     * Get the price of the Buyable item.
+     *
+     * @return float
+     */
+    public function getBuyableOptions($options = null)
+    {
+        if(property_exists($this, 'options')) return $this->options;
+
+        return null;
+    }
 }

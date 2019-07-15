@@ -103,7 +103,7 @@ class CartItem implements Arrayable, Jsonable
     {
         return $this->numberFormat($this->price, $decimals, $decimalPoint, $thousandSeperator);
     }
-    
+
     /**
      * Returns the formatted price with TAX.
      *
@@ -130,7 +130,7 @@ class CartItem implements Arrayable, Jsonable
     {
         return $this->numberFormat($this->subtotal, $decimals, $decimalPoint, $thousandSeperator);
     }
-    
+
     /**
      * Returns the formatted total.
      * Total is price for whole CartItem with TAX
@@ -157,7 +157,7 @@ class CartItem implements Arrayable, Jsonable
     {
         return $this->numberFormat($this->tax, $decimals, $decimalPoint, $thousandSeperator);
     }
-    
+
     /**
      * Returns the formatted tax.
      *
@@ -196,6 +196,7 @@ class CartItem implements Arrayable, Jsonable
         $this->name     = $item->getBuyableDescription($this->options);
         $this->price    = $item->getBuyablePrice($this->options);
         $this->priceTax = $this->price + $this->tax;
+        $this->options    = $item->getBuyableOptions($this->options);
     }
 
     /**
@@ -225,7 +226,7 @@ class CartItem implements Arrayable, Jsonable
     public function associate($model)
     {
         $this->associatedModel = is_string($model) ? $model : get_class($model);
-        
+
         return $this;
     }
 
@@ -238,7 +239,7 @@ class CartItem implements Arrayable, Jsonable
     public function setTaxRate($taxRate)
     {
         $this->taxRate = $taxRate;
-        
+
         return $this;
     }
 
@@ -257,11 +258,11 @@ class CartItem implements Arrayable, Jsonable
         if($attribute === 'priceTax') {
             return $this->price + $this->tax;
         }
-        
+
         if($attribute === 'subtotal') {
             return $this->qty * $this->price;
         }
-        
+
         if($attribute === 'total') {
             return $this->qty * ($this->priceTax);
         }
@@ -269,7 +270,7 @@ class CartItem implements Arrayable, Jsonable
         if($attribute === 'tax') {
             return $this->price * ($this->taxRate / 100);
         }
-        
+
         if($attribute === 'taxTotal') {
             return $this->tax * $this->qty;
         }
