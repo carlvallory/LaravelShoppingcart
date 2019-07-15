@@ -64,4 +64,14 @@ class BuyableProduct implements Buyable
     {
         return $this->price;
     }
+
+    /**
+     * Get the options of the Buyable item.
+     *
+     * @return array
+     */
+    public function getBuyablePrice($options = null)
+    {
+        return $this->price;
+    }
 }
