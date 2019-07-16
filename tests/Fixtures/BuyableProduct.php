@@ -22,6 +22,11 @@ class BuyableProduct implements Buyable
     private $price;
 
     /**
+     * @var array
+     */
+    private $options;
+
+    /**
      * BuyableProduct constructor.
      *
      * @param int|string $id
@@ -70,8 +75,8 @@ class BuyableProduct implements Buyable
      *
      * @return array
      */
-    public function getBuyablePrice($options = null)
+    public function getBuyableOptions($options = null)
     {
-        return $this->price;
+        return $this->options;
     }
 }
